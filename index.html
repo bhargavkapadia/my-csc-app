@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhargav CSC Digital App</title>
+    <style>
+        :root { --primary: #1a73e8; --secondary: #25D366; --bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); margin: 0; padding-bottom: 80px; }
+        
+        /* Header Section */
+        .header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: white; padding: 30px 20px; text-align: center; border-radius: 0 0 25px 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .header h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
+        .header p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
+
+        /* Search Bar Simulation */
+        .search-box { background: white; width: 85%; margin: -20px auto 20px; padding: 12px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: left; color: #888; font-size: 14px; }
+
+        /* Grid Container */
+        .section-title { padding: 10px 20px; font-weight: bold; color: #444; font-size: 16px; }
+        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 15px 20px; }
+        
+        /* Service Item Card */
+        .service-card { background: white; padding: 15px 5px; border-radius: 12px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; border: 1px solid #eee; }
+        .service-card:active { transform: scale(0.95); background-color: #f0f7ff; }
+        .icon { font-size: 28px; margin-bottom: 8px; display: block; }
+        .label { font-size: 11px; font-weight: 600; color: #333; line-height: 1.2; display: block; }
+
+        /* Bottom Floating WhatsApp */
+        .wa-float { position: fixed; bottom: 20px; right: 20px; background: var(--secondary); color: white; padding: 15px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); display: flex; align-items: center; gap: 8px; z-index: 100; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Bhargav CSC Center</h1>
+    <p>ડીજીટલ સેવાઓ હવે તમારા મોબાઈલમાં</p>
+</div>
+
+<div class="search-box">🔍 સર્વિસ શોધો...</div>
+
+<div class="section-title">સરકારી & નાણાકીય સેવાઓ</div>
+<div class="service-grid">
+    <div class="service-card" onclick="order('E-Shram Card')"><span class="icon">👷</span><span class="label">e-Shram Registration</span></div>
+    <div class="service-card" onclick="order('PAN Card')"><span class="icon">💳</span><span class="label">PAN Card Apply</span></div>
+    <div class="service-card" onclick="order('Money Transfer')"><span class="icon">💸</span><span class="label">Money Transfer</span></div>
+    <div class="service-card" onclick="order('AEPS/ATM')"><span class="icon">🏦</span><span class="label">Bank Cash (AEPS)</span></div>
+    <div class="service-card" onclick="order('Credit Card Bill')"><span class="icon">🏧</span><span class="label">Credit Card Bill</span></div>
+    <div class="service-card" onclick="order('Loan/Insurance')"><span class="icon">🛡️</span><span class="label">Loan & Insurance</span></div>
+</div>
+
+<div class="section-title">બિલ & રિચાર્જ</div>
+<div class="service-grid">
+    <div class="service-card" onclick="order('Light Bill')"><span class="icon">💡</span><span class="label">Electricity Bill</span></div>
+    <div class="service-card" onclick="order('Mobile Recharge')"><span class="icon">📱</span><span class="label">Mobile Recharge</span></div>
+    <div class="service-card" onclick="order('Online Form')"><span class="icon">📝</span><span class="label">Online Form Filling</span></div>
+</div>
+
+<div class="section-title">બિઝનેસ & લીગલ સર્વિસ</div>
+<div class="service-grid">
+    <div class="service-card" onclick="order('GST/ITR')"><span class="icon">📊</span><span class="label">GST - ITR Reg.</span></div>
+    <div class="service-card" onclick="order('Udhyog Aadhar')"><span class="icon">🏭</span><span class="label">Udhyog Aadhar</span></div>
+    <div class="service-card" onclick="order('Police Verification')"><span class="icon">👮</span><span class="label">Police/Bhada Karar</span></div>
+</div>
+
+<div class="section-title">પ્રિન્ટિંગ & બુકિંગ</div>
+<div class="service-grid">
+    <div class="service-card" onclick="order('Ticket Booking')"><span class="icon">✈️</span><span class="label">Railway/Flight</span></div>
+    <div class="service-card" onclick="order('Photo/Resume')"><span class="icon">📸</span><span class="label">Photo/Resume/Xerox</span></div>
+    <div class="service-card" onclick="order('Glossy Print')"><span class="icon">🖼️</span><span class="label">Glossy/Lamination</span></div>
+</div>
+
+<a href="https://wa.me/91XXXXXXXXXX?text=હેલો, મને તમારી સર્વિસ વિશે માહિતી જોઈએ છે." class="wa-float" id="waLink">
+    <span>WhatsApp</span>
+</a>
+
+<script>
+    // તમારો નંબર અહીં લખજો (7874568889 ની જગ્યાએ)
+    const myNumber = "7874568889"; 
+
+    function order(serviceName) {
+        const message = encodeURIComponent("હેલો ભાર્ગવભાઈ, મારે " + serviceName + " ની સર્વિસ લેવી છે. શું વિગતો જોઈશે?");
+        window.open("https://wa.me/" + myNumber + "?text=" + message, "_blank");
+    }
+    
+    document.getElementById('waLink').href = "https://wa.me/" + myNumber;
+</script>
